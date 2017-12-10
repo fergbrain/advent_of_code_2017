@@ -14,25 +14,14 @@ p = 0
 s = 0
 
 for i in puzInput:
-    if ( p % len(l) ) >= ( (p+i+1) % len(l) ):
-        temp_list = l[p % len(l):] + l[:(p+i) % len(l)] 
-        temp_list = temp_list[::-1]
-        
-        k = 0
-        for j in range( (p) % len(l), len(l)):
-            l[j] = temp_list[k]
-            k += 1
-        for j in range(0, len(temp_list) - k  ):
-            l[j] = temp_list[k]
-            k += 1
-    else:
-        temp_list = l[p % len(l):(p+i) % len(l)]
-        temp_list = temp_list[::-1]
-        k = 0
-        for j in range(p % len(l), (p+i) % len(l)):
-            l[j] = temp_list[k]
-            k += 1
-    p += i + s
+    
+    l_temp = l + l
+    l_sel = l_temp[p:(p+i)]
+    l_sel.reverse()
+    
+    for j in range(i):
+        l[(p+j)%ln] = l_sel[j]
+    p = (p + i + s) % ln
     s += 1
 
 #print puzInput
